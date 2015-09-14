@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'faker'
 gem 'devise'
+gem 'figaro', '1.0'
 
 group :development, :test do
   gem 'byebug'

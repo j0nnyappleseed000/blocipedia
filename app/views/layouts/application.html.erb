@@ -10,8 +10,8 @@
   <div class="container">
     <ul class="nav nav-tabs pull-right">
       <% if current_user %>
-           <li id="application-nav"><%=  link_to "Home", user_path(current_user) %></li>
-           <li id="application-nav"><%= link_to current_user.name, edit_user_registration_path %></li>
+           <li id="application-nav"><%=  link_to "Home", welcome_index_path %></li>
+           <li id="application-nav"><%= link_to current_user.email, edit_user_registration_path %></li>
            <li id="application-nav"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
          <% else %>
           <li id="application-nav"><%=  link_to "Home", welcome_index_path %></li>
