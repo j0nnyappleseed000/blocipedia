@@ -8,17 +8,31 @@
 </head>
 <body>
   <div class="container">
-    <ul class="nav nav-tabs pull-right">
+    <div>
       <% if current_user %>
-           <li id="application-nav"><%=  link_to "Home", welcome_index_path %></li>
-           <li id="application-nav"><%= link_to current_user.email, edit_user_registration_path %></li>
-           <li id="application-nav"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        <ul class="blocipedia-icon pull-left">
+          <p>
+            <a href=<%= user_wikis_path(current_user) %>><img src="https://ujk-portfolio-development.s3.amazonaws.com/uploads/work/blocipedia/blocipedia.svg" style="float:left;width:100px;height:100px;">
+          </p>
+        </ul>
+      <% else %>
+        <ul class="blocipedia-icon pull-left">
+          <p>
+            <a href=<%= welcome_index_path %>><img src="https://ujk-portfolio-development.s3.amazonaws.com/uploads/work/blocipedia/blocipedia.svg" style="float:left;width:100px;height:100px;">
+          </p>
+        </ul>
+      <% end %>
+    </div>
+    <div>
+      <ul class="nav nav-tabs pull-right">
+        <% if current_user %>
+          <li id="application-nav"><%= link_to current_user.email, edit_user_registration_path %></li>
+          <li id="application-nav"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
          <% else %>
-          <li id="application-nav"><%=  link_to "Home", welcome_index_path %></li>
-          <li id="application-nav"><%=  link_to "Sign Up", new_user_registration_path %></li>
           <li id="application-nav"><%=  link_to "Sign In", new_user_session_path %></li>
-       <% end %>
-    </ul>
+         <% end %>
+      </ul>
+    </div>
      
     <%= yield %>
   </div>
