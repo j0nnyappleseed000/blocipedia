@@ -1,3 +1,6 @@
-<td>Placeholder</td>
-<td>Placeholder</td>
-<td>Placeholder</td>
+<%= if Wiki.new %>
+  <td><%= Wiki.title %></td>
+  <td><%= Wiki.body %></td>
+  <td><%= Wiki.updated_at %></td>
+<% else %>
+<% end %>
