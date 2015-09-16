@@ -1,28 +1,29 @@
 class WikisController < ApplicationController
    def index
     @wikis = Wiki.all
+      @wiki = Wiki.new
    end
 
    def new
     @wiki = Wiki.new
    end
 
-  #  def show
-  #   @wiki = Wiki.find(params[:id])
-  #  end
+   def show
+    @wiki = Wiki.find(params[:id])
+   end
 
-  #  def edit
-  #   @wiki = Wiki.find(params[:id])
-  #  end
+   def edit
+    @wiki = Wiki.find(params[:id])
+   end
 
-  #  # def create
-  #  #  @wiki = Wiki.new(params.require(:wiki).permit(:title, :body, :public))
-  #  #  if @wiki.save
-  #  #    redirect_to @wiki, notice: "New Wiki was created successfully."
-  #  #  else
-  #  #    flash [:error] = "There was an error creating the new Wiki. Please try again."
-  #  #  end
-  #  # end
+  #  def create
+  #   @wiki = Wiki.new(params.require(:wiki).permit(:title, :body, :public))
+  #   if @wiki.save
+  #     redirect_to @wiki, notice: "New Wiki was created successfully."
+  #   else
+  #     flash [:error] = "There was an error creating the new Wiki. Please try again."
+  #   end
+  #  end
 
   #  def update
   #   @wiki = Wiki.find(params[:id])

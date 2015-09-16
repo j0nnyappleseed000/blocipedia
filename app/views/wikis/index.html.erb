@@ -10,9 +10,9 @@
         </tr>
       </thead>
       <tbody>
-        <%= render partial: 'wikis/wiki', locals: {user: @user} %>
+        <%= render partial: 'wiki', locals: {wiki: @wiki} %>
       </tbody>
     </table>
   </div>
-  <%= link_to "New Wiki", new_user_wiki_path, class: 'btn btn-success' %>
+  <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
 </div>

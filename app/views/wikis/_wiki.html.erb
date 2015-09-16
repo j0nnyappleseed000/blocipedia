@@ -1,6 +1,6 @@
-<%= if Wiki.new %>
-  <td><%= Wiki.title %></td>
-  <td><%= Wiki.body %></td>
-  <td><%= Wiki.updated_at %></td>
+<% if wiki %>
+  <td><%= wiki.title %></td>
+  <td><%= wiki.body %></td>
+  <td><%= wiki.updated_at %></td>
 <% else %>
 <% end %>
