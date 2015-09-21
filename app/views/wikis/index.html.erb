@@ -1,12 +1,13 @@
 <div class="container">
   <div class="row buffer">
-    <h2 class= "h3-text-devise"><% current_user.email %>'s Wikis</h2>
+    <h2 class= "h3-text-devise"><%= @user.email %>'s Wikis</h2>
     <table class= "table table-bordered table-hover" data-sort-name="description" data-sort-order="desc">
       <thead>
         <tr>
           <th>Wiki Name</th>
           <th>Description</th>
           <th>Last Updated</th>
+          <th> </th>
         </tr>
       </thead>
       <tbody>

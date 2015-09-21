@@ -1,6 +1,9 @@
+<%= wiki.inspect %>
+
 <% if wiki %>
   <td><%= wiki.title %></td>
   <td><%= wiki.body %></td>
   <td><%= wiki.updated_at %></td>
+  <td><%= link_to "edit", edit_wiki_path(current_user) %></td>
 <% else %>
 <% end %>
