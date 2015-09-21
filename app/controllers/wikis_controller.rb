@@ -5,10 +5,9 @@ class WikisController < ApplicationController
     @user = current_user
    end
 
-   def new
+  def new
     @wiki = Wiki.new
-    @wiki.save
-   end
+  end
 
    def show
     @wikis = Wiki.all
@@ -22,7 +21,11 @@ class WikisController < ApplicationController
 
    def create
     @wiki = Wiki.new(params.require(:wiki).permit(:title, :body, :public))
-    @wiki.save
+    if @wiki.save
+      redirect_to @wiki
+    else
+    
+    end
    end
 
    def update
