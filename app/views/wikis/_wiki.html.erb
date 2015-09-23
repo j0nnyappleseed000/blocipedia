@@ -1,8 +1,10 @@
+ <!-- an @ makes a variable different -->
+ <!-- @jonathan is a different person than jonathan -->
 <% if wiki %>
   <tr>
-    <td><%= link_to wiki.title, wiki_path(current_user) %></td>
+    <td><%= link_to wiki.title, wiki_path(wiki) %></td>
     <td><%= wiki.updated_at %></td>
-    <td><%= link_to "edit", edit_wiki_path(current_user) %></td>
+    <td><%= link_to "edit", edit_wiki_path(wiki) %></td>
   </tr>
 <% else %>
 <% end %>
