@@ -1,5 +1,7 @@
 <h2 class= "h3-text-devise">Edit <%=  %></h2>
 
+<%= @wiki.inspect %>
+
 <div class="col-md-8">
  <%= form_for @wiki do |f| %>
    <div class="form-group">
@@ -10,6 +12,7 @@
      <%= f.label :description %>
      <%= f.text_area :body, rows: 5, class: 'form-control', placeholder: "New Wiki description" %>
    </div>
+   <%= link_to "Back", :back, class: 'btn btn-info' %>
    <%= f.submit "Save", class: 'btn btn-success' %>
  <% end %>
 </div>

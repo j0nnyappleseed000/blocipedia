@@ -10,13 +10,12 @@ class WikisController < ApplicationController
   end
 
    def show
-    @wikis = Wiki.all
     @wiki = Wiki.find(params[:id])
     @user = current_user
    end
 
    def edit
-    show
+    @wiki = Wiki.find(params[:id])
    end
 
    def create
@@ -37,4 +36,15 @@ class WikisController < ApplicationController
       render :edit
       end
     end
+
+    def destroy
+     @wiki = Wiki.find(params[:id])
+     if @wiki.destroy
+      flash[:notice] = "The wiki was removed successfully."
+      redirect_to wikis_path
+     else
+      flash[:error] = "There was an error removing the wiki. Please try again."
+      render :show
+     end
+   end
 end
