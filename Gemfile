@@ -14,6 +14,7 @@ gem 'bootstrap-sass'
 gem 'faker'
 gem 'devise'
 gem 'figaro', '1.0'
+gem 'pundit'
 
 group :development, :test do
   gem 'byebug'
