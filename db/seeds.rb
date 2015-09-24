@@ -1,3 +1,27 @@
+require 'faker'
+
+5.times do
+  user = User.new(
+    name:     Faker::Name.name,
+    email:    Faker::Internet.email,
+    password: Faker::Lorem.characters(10)
+    )
+    user.skip_confirmation!
+    user.save!
+end
+users = User.all
+
+
+15.times do
+  Wiki.create!(
+    title:         Faker::Lorem.sentence,
+    body:  Faker::Lorem.paragraph
+    )
+end
+topics = Wiki.all
+
+
+
 admin = User.new(
    name:     'Admin User',
    email:    'admin@example.com',
