@@ -6,13 +6,13 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="welcome-index">
+<body>
   <div class="container">
     <div>
       <% if current_user %>
         <ul class="blocipedia-icon pull-left">
           <p>
-            <a href=<%= wikis_path(current_user) %>>
+            <a href=<%= wikis_path %>>
               <img src="https://ujk-portfolio-development.s3.amazonaws.com/uploads/work/blocipedia/blocipedia.svg" style="float:left;width:100px;height:100px;">
             </a>
           </p>

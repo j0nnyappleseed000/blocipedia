@@ -7,8 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    wikis_path(current_user)
+    wikis_path
   end
-
 
 end
