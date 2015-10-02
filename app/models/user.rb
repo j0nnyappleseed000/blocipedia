@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :wikis
+  after_initialize :set_default_role, :if => :new_record?
 
   def admin?
     role == 'admin'
@@ -16,11 +17,9 @@ class User < ActiveRecord::Base
   def premium?
     role == 'premium'
   end
-  
-  after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
-    self.role ||= :standard
+    self.role ||= :premium
   end
 
 end

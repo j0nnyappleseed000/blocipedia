@@ -23,7 +23,8 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
 
-    if current_user.update(premium: true)
+    current_user.update_attributes!( role: "premium" )
+    if user.premium?
         redirect_to new_charge_path
     else
       flash[:error] = "There was an error upgrading your account. Please try again."

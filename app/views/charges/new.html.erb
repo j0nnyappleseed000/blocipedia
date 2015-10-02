@@ -1,15 +1,19 @@
-<h3>Premium Membership</h3>
+<div class="h3-text-devise">
+  <h3>Premium Membership</h3>
   <p>With this membership, users will be allowed to ceate private wikis</p>
   <div>
     <h3>only<strong> $15</strong></h3>
   </div>
 
-  <script
-    class='stripe-button' 
-    src="https://checkout.stripe.com/checkout.js" 
-    data-key="pk_test_4Lgbfqo1vrs5A27dP7Le43ql" 
-    data-amount=<%= @stripe_btn_data[:amount] %> 
-    data-name="Blocipedia"
-    data-description="One Year Membership"
-    data-email="<%= @stripe_btn_data[:email] %>">
-  </script>
+  <%= form_tag charges_path do %>
+    <script
+      class='stripe-button' 
+      src="https://checkout.stripe.com/checkout.js" 
+      data-key="pk_test_4Lgbfqo1vrs5A27dP7Le43ql"
+      data-amount=<%= @stripe_btn_data[:amount] %> 
+      data-name="Blocipedia"
+      data-description="One Year Membership"
+      data-email="<%= @stripe_btn_data[:email] %>">
+    </script>
+  <% end %>
+</div>
