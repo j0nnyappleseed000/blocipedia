@@ -13,7 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'faker'
 gem 'devise'
-gem 'figaro', '1.0'
+gem 'figaro', '1.1.1'
 gem 'pundit'
 gem 'stripe'
 
