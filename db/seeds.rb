@@ -23,7 +23,7 @@ topics = Wiki.all
 
 
 admin = User.new(
-   name:     'Admin User',
+   name:     'Admin',
    email:    'admin@example.com',
    password: 'helloworld',
    role:     'admin'

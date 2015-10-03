@@ -10,7 +10,6 @@ class ChargesController < ApplicationController
 
   def create
     @amount = params[:amount]
-    token = params[:stripeToken]
 
     customer = Stripe::Customer.create(
       :email => current_user.email,
@@ -19,15 +18,15 @@ class ChargesController < ApplicationController
 
     charge = Stripe::Charge.create(
       :customer    => customer.id,
-      :amount      => Amount.default,
-      :source      => token,
-      :description => 'Rails Stripe customer',
+      :amount      => @amount,
+      :description => 'Blocipedia Membership',
       :currency    => 'usd'
     )
 
-    current_user.update_attributes!( role: "premium" )
+    current_user.update_attributes!(premium: true)
+
     if user.premium?
-        redirect_to new_charge_path
+        redirect_to users_path
     else
       flash[:error] = "There was an error upgrading your account. Please try again."
       redirect_to edit_user_registration_path

@@ -34,15 +34,24 @@
         <%= f.submit "Update", class: 'btn btn-success' %>
       </div>
       
-      <h3>Premium Membership</h3>
-        <p>Create private wikis and more for only <strong>$15/yr</strong></p>
-        <%= link_to "Upgrade Now", new_charge_path, class: 'btn btn-info' %>
+      <% if (current_user[:role] == "standard") %>
+        <h3>Premium Membership</h3>
+          <p>Create private wikis and more for only <strong>$15/yr</strong></p>
+          <%= link_to "Upgrade Now", new_charge_path, class: 'btn btn-info' %>
+      <% elsif (current_user[:role] == "admin") %>
+      <% else %>
+        <h3>Downgrade your Premium Membership</h3>
+          <p class="text-warning">Doing this will automatically make all of your private wikis viewable to the public!</p>
+          <%= link_to "Downgrade Membership", users_path, data: { confirm: "Are you sure? Doing this will automatically make all of your private wikis viewable to the public!" }, class: 'btn btn-warning' %>
+      <% end %>
 
       <h3>Deactivate my account</h3>
       <div class="form-group">
         <%= link_to "Deactivate", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %>
       </div>
-      <%= link_to "Back", :back %>
+      <div class="new-wiki-btn">
+        <%= link_to "Back", :back %>
+      </div>
     <% end %>
   </div>
 </div>

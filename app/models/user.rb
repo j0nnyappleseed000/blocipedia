@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   end
 
   def set_default_role
-    self.role ||= :premium
+    self.role ||= :standard
   end
 
 end
