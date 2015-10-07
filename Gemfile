@@ -16,6 +16,8 @@ gem 'devise'
 gem 'figaro', '1.1.1'
 gem 'pundit'
 gem 'stripe'
+gem 'will_paginate', '~> 3.0.5'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'byebug'
