@@ -2,14 +2,18 @@
   <div class="row buffer">
     <h2 class= "h3-text-devise">Wikis</h2>
     <div class="new-wiki-btn">
+      <%if current_user %>
       <%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
+      <% end %>
     </div>
     <table class= "table table-bordered table-hover" data-sort-name="description" data-sort-order="desc">
       <thead>
         <tr>
           <th>Wiki Name</th>
           <th>Last Updated</th>
-          <th> </th>
+          <% if current_user %>
+            <th> </th>
+          <% end %>
         </tr>
       </thead>
       <tbody>

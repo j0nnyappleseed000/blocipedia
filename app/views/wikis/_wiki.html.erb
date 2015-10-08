@@ -2,7 +2,9 @@
   <tr>
     <td><%= link_to wiki.title, wiki_path(wiki) %></td>
     <td><%= wiki.updated_at %></td>
-    <td><%= link_to "edit", edit_wiki_path(wiki) %></td>
+    <% if current_user %>
+      <td><%= link_to "edit", edit_wiki_path(wiki) %></td>
+    <% end %>
   </tr>
 <% else %>
 <% end %>

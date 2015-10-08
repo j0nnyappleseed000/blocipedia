@@ -41,7 +41,7 @@
       <% elsif current_user.premium? %>
         <h3>Downgrade your Premium Membership</h3>
           <p class="text-warning">Doing this will automatically make all of your private wikis viewable to the public!</p>
-          <%= link_to "Downgrade Membership", users_path, data: { confirm: "Are you sure? Doing this will automatically make all of your private wikis viewable to the public!" }, class: 'btn btn-warning' %>
+          <%= link_to "Downgrade Membership", users_path, data: { confirm: "Are you sure? Doing this will automatically make all of your private wikis viewable to the public!" }, method: :update, class: 'btn btn-warning' %>
       <% end %>
 
       <h3>Deactivate my account</h3>
