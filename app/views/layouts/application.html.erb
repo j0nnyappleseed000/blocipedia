@@ -33,14 +33,14 @@
         <% if current_user && current_user.role == 'standard' %>
           <li><%= link_to "Wikis", wikis_path %></li>
           <li><%= link_to "Users", users_path %></li>
-          <li><%= link_to current_user.name, edit_user_registration_path %></li>
+          <li><%= link_to current_user.name, user_path(current_user) %></li>
           <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
         <% elsif current_user && current_user.role == 'premium' || current_user && 
         current_user.role == 'admin' %>
           <!-- <li><%= link_to "Private Wikis", wikis_path %></li> -->
           <li><%= link_to "Wikis", wikis_path %></li>
           <li><%= link_to "Users", users_path %></li>
-          <li><%= link_to current_user.name, edit_user_registration_path %></li>
+          <li><%= link_to current_user.name, user_path(current_user) %></li>
           <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "Wikis", wikis_path %></li>

@@ -25,7 +25,7 @@ class ChargesController < ApplicationController
     current_user.update_attributes!(role: 'premium')
 
     if current_user.premium?
-        redirect_to users_path(current_user)
+        redirect_to user_path(current_user)
     else
       flash[:error] = "There was an error upgrading your account. Please try again."
       redirect_to edit_user_registration_path

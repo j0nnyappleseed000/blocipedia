@@ -1,5 +1,27 @@
 <div class="h3-text-devise">
-  <h3>User</h3>
-  <p>Name: <%= @user.name if @user.name %></p>
+  <h2><%= @user.name if @user.name %></h2>
   <p>Email: <%= @user.email if @user.email %></p>
+  <p>Account Type: <%= @user.role %></p>
+  <p><%= link_to "Edit User Info", edit_user_registration_path %></p>
+  </div>
+    <table class= "table table-bordered table-hover" data-sort-name="description" data-sort-order="desc">
+      <thead>
+        <tr>
+          <th>Wiki Name</th>
+          <th>Created by</th>
+          <% if current_user %>
+            <th></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @wikis.each do |wiki| %>
+          <%= render partial: 'wiki', locals: {wiki: wiki} %>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="apple_pagination">
+      <%= will_paginate @wikis %>
+    </div>
+  </div>
 </div>

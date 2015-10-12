@@ -11,7 +11,8 @@ class WikisController < ApplicationController
    end
 
   def new
-    @wiki = Wiki.new
+    @wiki = current_user.wikis.new
+    @user = current_user
     authorize @wiki
   end
 
@@ -27,6 +28,7 @@ class WikisController < ApplicationController
 
    def create
     @wiki = Wiki.new(params.require(:wiki).permit(:title, :body, :public))
+    @wiki.user = current_user
     authorize @wiki
     if @wiki.save
       redirect_to @wiki
