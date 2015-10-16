@@ -3,25 +3,32 @@
   <p>Email: <%= @user.email if @user.email %></p>
   <p>Account Type: <%= @user.role %></p>
   <p><%= link_to "Edit User Info", edit_user_registration_path %></p>
-  </div>
-    <table class= "table table-bordered table-hover" data-sort-name="description" data-sort-order="desc">
-      <thead>
-        <tr>
-          <th>Wiki Name</th>
-          <th>Created by</th>
-          <% if current_user %>
-            <th></th>
+  <%if current_user.premium? %>
+    <div>
+      <h3>Private Wikis</h3>
+      <div>
+        <table class= "table table-bordered table-hover" data-sort-name="description" data-sort-order="desc">
+          <%= render partial: 'wikis/tableheaders' %>
+          <tbody>
+            <% @priwikis.each do |wiki| %>
+              <%= render partial: 'wiki', locals: {wiki: wiki} %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+  <div>
+    <h3>Public Wikis</h3>
+    <div>
+      <table class= "table table-bordered table-hover" data-sort-name="description" data-sort-order="desc">
+        <%= render partial: 'wikis/tableheaders' %>
+        <tbody>
+          <% @pubwikis.each do |wiki| %>
+            <%= render partial: 'wiki', locals: {wiki: wiki} %>
           <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @wikis.each do |wiki| %>
-          <%= render partial: 'wiki', locals: {wiki: wiki} %>
-        <% end %>
-      </tbody>
-    </table>
-    <div class="apple_pagination">
-      <%= will_paginate @wikis %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

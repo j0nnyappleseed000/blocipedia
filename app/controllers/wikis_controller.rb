@@ -1,7 +1,7 @@
 class WikisController < ApplicationController
 
    def index
-    if current_user
+    if current_user.standard?
       @wikis = Wiki.visible_to(current_user).paginate(:page => params[:page], per_page: 10)
     else
       @wikis = Wiki.paginate(:page => params[:page], per_page: 10)
@@ -27,7 +27,7 @@ class WikisController < ApplicationController
    end
 
    def create
-    @wiki = Wiki.new(params.require(:wiki).permit(:title, :body, :public))
+    @wiki = Wiki.new(params.require(:wiki).permit(:title, :body, :private,))
     @wiki.user = current_user
     authorize @wiki
     if @wiki.save
@@ -40,7 +40,7 @@ class WikisController < ApplicationController
    def update
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :public))
+    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :public, :private))
       redirect_to @wiki
     else
       flash[:error] = "There was an error saving the wiki info. Please try again."

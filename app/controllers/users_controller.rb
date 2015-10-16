@@ -2,13 +2,13 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @wikis = Wiki.paginate(:page => params[:page], per_page: 10)
     #authorize User
   end
 
   def show
     @user = User.find(params[:id])
-    @wikis = @user.wikis.paginate(:page => params[:page], per_page: 10)
+    @priwikis = Wiki.privately_visable(@user)
+    @pubwikis = Wiki.publicly_visable(@user)
     #authorize @user
   end
 
