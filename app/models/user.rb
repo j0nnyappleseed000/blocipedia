@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :wikis
   after_initialize :set_default_role, :if => :new_record?
 
+
   def admin?
     role == 'admin'
   end

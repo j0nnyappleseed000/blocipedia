@@ -31,12 +31,16 @@ class UsersController < ApplicationController
   end
 
   def downgrade
+    wikis = Wiki.all
     user = current_user
     user.role = 'standard'
+    current_user.wikis.where(:private => true).update_all(:private => false)
     if user.save!
+
       redirect_to users_path
     else
-    
+      flash[:error] = "There was an error downgrading your user. Please try again."
+      redirect_to edit_user_registration_path
     end
   end
 
