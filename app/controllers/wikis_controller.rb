@@ -2,9 +2,9 @@ class WikisController < ApplicationController
 
    def index
     if current_user.standard?
-      @wikis = Wiki.publicly_visable(current_user).paginate(:page => params[:page], per_page: 10)
+      @wikis = policy_scope(Wiki).publicly_visable(current_user).paginate(:page => params[:page], per_page: 10)
     else
-      @wikis = Wiki.paginate(:page => params[:page], per_page: 10)
+      @wikis = policy_scope(Wiki).paginate(:page => params[:page], per_page: 10)
     end
     @user = current_user
     authorize @wikis
