@@ -1,6 +1,7 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
   has_many :collaborators
+  has_many :users, through: :collaborators
   validates_presence_of :user_id
 
   scope :publicly_visable, -> { where(:private => false) }

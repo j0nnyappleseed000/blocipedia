@@ -1,0 +1,25 @@
+<h1 class="h3-text-devise">"<%= @wiki.title %>" collaborators</h1>
+<%= link_to 'New Collaborator', new_wiki_collaborator_path, class: 'btn btn-success' %>
+<%if @collaborators.any?%>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @collaborators.each do |collaborator| %>
+        <tr>
+          <td><%= collaborator.user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+<br>
+<br>
+
+<%= link_to 'Back', wikis_path %>

@@ -1,7 +1,12 @@
 <tr>
   <td><%= link_to wiki.title, wiki_path(wiki) %></td>
-  <td><%= time_ago_in_words(wiki.created_at) %> ago by <%= wiki.user.name %></td>
+  <td><%= time_ago_in_words(wiki.created_at) %> ago by <%= link_to wiki.user.name, user_path(@user) %></td>
+  <% if @user.premium? %>
+    <td><%= link_to 'View Collaborators', wiki_collaborators_path(wiki) %></td>
+    <td><%= link_to 'Add Collaborator', new_wiki_collaborator_path(wiki) %></td>
+    <% end %>
   <% if current_user %>
-    <td><%= link_to "edit", edit_wiki_path(wiki) %></td>
+    <td><%= link_to "Edit", edit_wiki_path(wiki) %></td>
   <% end %>
+    <td><%= link_to 'Delete', wiki, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>

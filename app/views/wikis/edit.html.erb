@@ -1,8 +1,13 @@
-<h2 class= "h3-text-devise">Edit <%=  %></h2>
+<h2 class= "h3-text-devise">Edit</h2>
 
 <div class="col-md-8">
   <%= form_for @wiki do |f| %>
-   <%= render partial: 'form', locals: {f: f} %>
+  <% if current_user.role == 'admin' || current_user.role == 'premium' %>
+    <%= render partial: 'form', locals: {f: f} %>
+    <%= link_to 'New Collaborator', new_wiki_collaborator_path(:wiki_id) %>
+  <% end %>
+  <br>
+  <br>
    <div class="form-group">
      <%= f.label :name %>
      <%= f.text_field :title, class: 'form-control', placeholder: "New Wiki name" %>

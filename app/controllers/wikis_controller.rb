@@ -1,12 +1,10 @@
 class WikisController < ApplicationController
+  helper_method :sort_column, :sort_direction
 
    def index
-    if current_user.standard?
-      @wikis = policy_scope(Wiki).publicly_visable(current_user).paginate(:page => params[:page], per_page: 10)
-    else
-      @wikis = policy_scope(Wiki).paginate(:page => params[:page], per_page: 10)
-    end
+    @wikis = Wiki.order(sort_column + " " + sort_direction).paginate(:page => params[:page], per_page: 10)
     @user = current_user
+    @users = User.all
     authorize @wikis
    end
 
@@ -22,6 +20,7 @@ class WikisController < ApplicationController
    end
 
    def edit
+    @users = User.all
     @wiki = Wiki.find(params[:id])
     authorize @wiki
    end
@@ -40,7 +39,7 @@ class WikisController < ApplicationController
    def update
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :public, :private))
+    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :public, :private, :user_id))
       redirect_to @wiki
     else
       flash[:error] = "There was an error saving the wiki info. Please try again."
@@ -57,5 +56,15 @@ class WikisController < ApplicationController
       flash[:error] = "There was an error removing the wiki. Please try again."
       render :show
      end
+   end
+
+   private
+
+   def sort_column
+    params[:sort] || "title"
+   end
+
+   def sort_direction
+    params[:direction] || "asc"
    end
 end

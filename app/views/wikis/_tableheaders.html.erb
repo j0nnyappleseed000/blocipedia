@@ -1,9 +1,9 @@
 <thead>
   <tr>
-    <th>Wiki Name</th>
-    <th>Created by</th>
+    <th><%= sortable "title", "Wiki Name" %></th>
+    <th><%= sortable "created_at", "Created by" %></th>
     <% if current_user %>
-      <th></th>
+      <th colspan="4"></th>
     <% end %>
   </tr>
 </thead>

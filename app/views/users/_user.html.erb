@@ -3,7 +3,9 @@
   <td><%= link_to user[:email], user_path(user) %></td>
   <td><%= user[:role] %></td>
 <% elsif (current_user) %>
-  <td><%= link_to user[:name], user_path(user) %></td>
+  <% @users.each do |user| %>
+    <td><%= link_to user[:name], user_path(user) %></td>
+  <% end %>
   <td><%= user[:email] %></td>
   <td><%= user[:role] %></td>
   <% else %>

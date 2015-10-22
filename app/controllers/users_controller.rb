@@ -7,8 +7,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @priwikis = Wiki.privately_visable(@user)
-    @pubwikis = Wiki.publicly_visable(@user)
+    @wikis = Wiki.all
+    @priwikis = Wiki.privately_visable
+    @pubwikis = Wiki.publicly_visable
     authorize @user
   end
 
