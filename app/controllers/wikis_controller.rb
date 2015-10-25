@@ -2,7 +2,8 @@ class WikisController < ApplicationController
   helper_method :sort_column, :sort_direction
 
    def index
-    @wikis = Wiki.order(sort_column + " " + sort_direction).paginate(:page => params[:page], per_page: 10)
+    @search = Wiki.search(params[:q])
+    @wikis = @search.result.paginate(:page => params[:page], per_page: 10)
     @user = current_user
     @users = User.all
     authorize @wikis

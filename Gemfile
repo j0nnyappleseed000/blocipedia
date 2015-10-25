@@ -18,6 +18,7 @@ gem 'pundit'
 gem 'stripe'
 gem 'will_paginate', '~> 3.0.5'
 gem 'redcarpet'
+gem 'ransack'
 
 group :development, :test do
   gem 'byebug'
