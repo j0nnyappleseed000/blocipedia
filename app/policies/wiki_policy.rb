@@ -7,6 +7,10 @@ class WikiPolicy < ApplicationPolicy
     record.public? || user.present?
   end
 
+  def edit?
+    record.user == user
+  end
+
   class Scope
    attr_reader :user, :scope
 

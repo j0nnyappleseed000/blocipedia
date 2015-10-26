@@ -22,6 +22,10 @@ class CollaboratorsController < ApplicationController
     @collaborator = @wiki.collaborators.build(collaborator_params)
   end
 
+  def destroy
+    @collaborator = Collaborator.find(params[:id])
+  end
+
   private
 
   def collaborator_params

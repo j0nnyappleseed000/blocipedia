@@ -1,17 +1,28 @@
 <h1 class="h3-text-devise">"<%= @wiki.title %>" collaborators</h1>
 <%= link_to 'New Collaborator', new_wiki_collaborator_path, class: 'btn btn-success' %>
-<%if @collaborators.any?%>
-  <table>
-    <thead>
-      <tr>
-        <th>User</th>
-      </tr>
-    </thead>
+<table class= "table table-bordered table-hover" data-sort-name="description" data-sort-order="desc">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Created at</th>
+      <% if current_user.id == @wiki.user_id %>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
 
+  <% if @collaborators.any? %>
     <tbody>
+        <tr>
+          <td></td>
+        </tr>
       <% @collaborators.each do |collaborator| %>
         <tr>
           <td><%= collaborator.user.name %></td>
+          <td><%= collaborator.created_at %></td>
+          <% if current_user.id == @wiki.user_id %>
+              <td><%= link_to 'Delete', collaborator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
@@ -22,4 +33,4 @@
 <br>
 <br>
 
-<%= link_to 'Back', wikis_path %>
+  <%= link_to 'Back', wikis_path %>
