@@ -8,6 +8,10 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def edit?
+    record.users.include?(user) || user.admin?
+  end
+
+  def destroy?
     record.user == user
   end
 

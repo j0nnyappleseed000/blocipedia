@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>User</th>
-      <th>Created at</th>
+      <th>Added at</th>
       <% if current_user.id == @wiki.user_id %>
         <th></th>
       <% end %>
@@ -21,7 +21,7 @@
           <td><%= collaborator.user.name %></td>
           <td><%= collaborator.created_at %></td>
           <% if current_user.id == @wiki.user_id %>
-              <td><%= link_to 'Delete', collaborator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Delete', wiki_collaborator_path(@wiki, collaborator), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         </tr>
       <% end %>

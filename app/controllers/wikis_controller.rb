@@ -1,8 +1,8 @@
 class WikisController < ApplicationController
-  helper_method :sort_column, :sort_direction
+  # helper_method :sort_column, :sort_direction
 
    def index
-    @search = Wiki.search(params[:q])
+    @search = Wiki.public_wikis.search(params[:q])
     @wikis = @search.result.paginate(:page => params[:page], per_page: 10)
     @user = current_user
     @users = User.all
@@ -50,6 +50,7 @@ class WikisController < ApplicationController
 
     def destroy
      @wiki = Wiki.find(params[:id])
+     authorize @wiki
      if @wiki.destroy
       flash[:notice] = "The wiki was removed successfully."
       redirect_to wikis_path

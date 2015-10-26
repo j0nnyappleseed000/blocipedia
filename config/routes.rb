@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post 'users/downgrade'
   
   get 'welcome/index'
+  get 'userpage', to: 'users#show', :as => :Wik
 
   root to: 'welcome#index'
   
