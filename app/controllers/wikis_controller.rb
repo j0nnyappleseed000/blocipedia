@@ -1,10 +1,13 @@
 class WikisController < ApplicationController
-  # helper_method :sort_column, :sort_direction
 
    def index
-    @search = Wiki.public_wikis.search(params[:q])
-    @wikis = @search.result.paginate(:page => params[:page], per_page: 10)
     @user = current_user
+    if @user.premium?
+      @search = Wiki.all.search(params[:q])
+    else
+      @search = Wiki.public_wikis.search(params[:q])
+    end
+    @wikis = @search.result.paginate(:page => params[:page], per_page: 10)
     @users = User.all
     authorize @wikis
    end
@@ -33,7 +36,7 @@ class WikisController < ApplicationController
     if @wiki.save
       redirect_to @wiki
     else
-    
+      redirect_to :back
     end
    end
 
@@ -58,15 +61,5 @@ class WikisController < ApplicationController
       flash[:error] = "There was an error removing the wiki. Please try again."
       render :show
      end
-   end
-
-   private
-
-   def sort_column
-    params[:sort] || "title"
-   end
-
-   def sort_direction
-    params[:direction] || "asc"
    end
 end

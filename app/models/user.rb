@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   belongs_to :collaborators
   after_initialize :set_default_role, :if => :new_record?
 
-  scope :publicly_visable, -> { where(:private => false) }
-  scope :privately_visable, -> { where(:private => true) }
+  # scope :publicly_visable, -> { where(:private => false) }
+  # scope :privately_visable, -> { where(:private => true) }
   
   def admin?
     role == 'admin'
