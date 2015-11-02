@@ -41,7 +41,7 @@ admin = User.new(
  standard.skip_confirmation!
  standard.save!
  
- premium = User.new(
+premium = User.new(
    name:     'Premium User',
    email:    'premium@example.com',
    password: 'helloworld',
@@ -49,3 +49,12 @@ admin = User.new(
  )
  premium.skip_confirmation!
  premium.save!
+
+ premium2 = User.new(
+   name:     'Premium User 2',
+   email:    'premium2@example.com',
+   password: 'helloworld',
+   role:     'premium'
+ )
+ premium2.skip_confirmation!
+ premium2.save!

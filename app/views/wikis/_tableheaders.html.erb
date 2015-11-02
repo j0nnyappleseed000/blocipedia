@@ -1,8 +1,7 @@
 <thead>
   <tr>
-
     <th><%= sort_link @search, :title, "Wiki Name" %></th>
-    <th><%= sort_link @search, :created_at, "Created by" %></th>
+    <th><%= sort_link @search, :created_at, "Created at" %></th>
     <% if current_user %>
       <th colspan="4"></th>
     <% end %>

@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @search = Wiki.search(params[:q])
     @wikis = @search.result
-    @priwikis = Wiki.privately_visable
-    @pubwikis = Wiki.publicly_visable
+    @priwikis = Wiki.privately_visable(@user)
+    @pubwikis = Wiki.publicly_visable(@user)
     authorize @user
   end
 

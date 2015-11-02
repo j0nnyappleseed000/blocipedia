@@ -3,13 +3,10 @@ class Wiki < ActiveRecord::Base
   has_many :collaborators
   has_many :users, through: :collaborators
   validates_presence_of :user_id
+  default_scope { order('created_at DESC') }
 
-  scope :publicly_visable, -> { where(:private => false) }
-  scope :privately_visable, -> { where(:private => true) }
-
-  def self.public_wikis
-    where(:private => false)
-  end
+  scope :publicly_visable, -> (user) { user ? all : where(:private => false) }
+  scope :privately_visable, -> (user) { user ? all : where(:private => true) }
 
   def public?
     !self.private

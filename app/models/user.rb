@@ -6,8 +6,12 @@ class User < ActiveRecord::Base
   belongs_to :collaborators
   after_initialize :set_default_role, :if => :new_record?
 
-  # scope :publicly_visable, -> { where(:private => false) }
-  # scope :privately_visable, -> { where(:private => true) }
+  # show all users except user passed in 
+  scope :all_except, ->(user) { where.not(id: user)}
+
+  def self.public_wikis
+    where(:private => false)
+  end
   
   def admin?
     role == 'admin'

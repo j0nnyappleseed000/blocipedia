@@ -13,9 +13,6 @@
 
   <% if @collaborators.any? %>
     <tbody>
-        <tr>
-          <td></td>
-        </tr>
       <% @collaborators.each do |collaborator| %>
         <tr>
           <td><%= collaborator.user.name %></td>
