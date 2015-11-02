@@ -7,7 +7,7 @@
       <% end %>
     </div>
     <table class= "table table-bordered table-hover" data-sort-name="description" data-sort-order="desc">
-      <%= render partial: 'tableheaders' %>
+      <%# render partial: 'tableheaders' %>
       <tbody>
         <% @wikis.each do |wiki| %>
           <%= render partial: 'wiki', locals: {wiki: wiki} %>
@@ -15,7 +15,7 @@
       </tbody>
     </table>
     <div class="apple_pagination">
-      <%= will_paginate @wikis %>
+      <%# will_paginate @wikis %>
     </div>
   </div>
 </div>

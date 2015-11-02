@@ -1,15 +1,8 @@
 class WikisController < ApplicationController
 
    def index
-    @user = current_user
-    if @user.premium? || @user.admin?
-      @search = Wiki.privately_visable(@user).search(params[:q])
-    else
-      @search = Wiki.publicly_visable(@user).search(params[:q])
-    end
-    @wikis = @search.result.paginate(:page => params[:page], per_page: 10)
-    @users = User.all
-    authorize @wikis
+    @wikis = policy_scope(Wiki)
+    # @wikis = @search.result.paginate(:page => params[:page], per_page: 10)
    end
 
   def new

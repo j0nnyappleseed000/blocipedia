@@ -13,7 +13,8 @@ class CollaboratorsController < ApplicationController
     @wiki = Wiki.find(params[:wiki_id]) # finds wiki from params
     @collaborator = @wiki.collaborators.new # creates new collaborator for wiki
     @collaborators = @wiki.collaborators # sets existing wiki collaborators
-    @users = User.all_except(@collaborators) # sets users without current_user
+    @users = @wiki.available_collaborators
+    # @users = User.all_except(@collaborators) && User.all_except(current_user) # sets users without existing wiki collaborators and current_user
   end
 
   def show

@@ -18,4 +18,8 @@ class Wiki < ActiveRecord::Base
     arr
   end
 
+  def available_collaborators
+    User.all.reject {|user| users.include?(user)}
+  end
+
 end
